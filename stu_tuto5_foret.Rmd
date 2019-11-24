@@ -60,7 +60,7 @@ test <- spam %>% slice(-perm[1:3000])
 
 11. Comparer les temps de calcul de la fonction **ranger** du package **ranger** et de la fonction **randoForest** du package **randomForest**.
 
-### Exercice 2 
+## Exercice 2 
 
 On considère les données *internet advertisements*  disponibles [ici](https://archive.ics.uci.edu/ml/datasets/internet+advertisements)).
 
