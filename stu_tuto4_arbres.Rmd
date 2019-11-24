@@ -1,0 +1,230 @@
+---
+title: 'Tuto 4 : Arbres'
+output:
+  html_notebook: 
+    css: ~/Dropbox/FICHIERS_STYLE/styles.css
+    toc: yes
+    toc_float: yes
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_classic(base_size=12))
+library(rpart)
+library(rpart.plot)
+```
+
+
+## Exercice 1 (Arbres de régression)
+
+On considère le jeu de données suivant :
+
+```{r}
+n <- 50
+set.seed(1234)
+X <- runif(n)
+set.seed(5678)
+Y <- 1*X*(X<=0.6)+(-1*X+3.2)*(X>0.6)+rnorm(n,sd=0.1)
+data1 <- data.frame(X,Y)
+ggplot(data1)+aes(x=X,y=Y)+geom_point()+theme_classic()
+```
+
+1. A l'aide de la fonction **rpart**, construire un arbre permettant d'expliquer $Y$ par $X$.
+
+
+2. Représenter l'arbre avec **prp** et **rpart.plot**.
+
+3. Ecrire l'estimateur associé à l'arbre.
+
+4. Ajouter sur le graphe de la question 1 la partition définie par l'arbre ainsi que les valeurs prédites.
+
+## Exercice 2 (Arbre de classification)
+
+On considère les données :
+
+```{r}
+n <- 50
+set.seed(12345)
+X1 <- runif(n)
+set.seed(5678)
+X2 <- runif(n)
+Y <- rep(0,n)
+set.seed(54321)
+Y[X1<=0.45] <- rbinom(sum(X1<=0.45),1,0.85)
+set.seed(52432)
+Y[X1>0.45] <- rbinom(sum(X1>0.45),1,0.15)
+data2 <- data.frame(X1,X2,Y)
+ggplot(data2)+aes(x=X1,y=X2,color=Y)+geom_point(size=2)+scale_x_continuous(name="")+scale_y_continuous(name="")+theme_classic()
+```
+
+1. Construire un arbre permettant d'expliquer $Y$ par $X$. Représenter l'arbre et identifier l'éventuel problème.
+
+
+2. Ecrire la règle de classification ainsi que la fonction de score définies par l'arbre.
+
+
+3. Ajouter sur le graphe de la question 1 la partition définie par l'abre.
+
+```{r}
+ggplot(data2)+aes(x=X1,y=X2,color=Y,shape=Y)+geom_point(size=2)+
+  theme_classic()+geom_vline(xintercept = 0.44,size=1,color="blue")
+```
+
+
+## Exercice 3 (entrée qualitative)
+
+On consière les données
+
+```{r}
+n <- 100
+X <- factor(rep(c("A","B","C","D"),n))
+set.seed(1234)
+Y[X=="A"] <- rbinom(sum(X=="A"),1,0.9)
+Y[X=="B"] <- rbinom(sum(X=="B"),1,0.25)
+Y[X=="C"] <- rbinom(sum(X=="C"),1,0.8)
+Y[X=="D"] <- rbinom(sum(X=="D"),1,0.2)
+Y <- as.factor(Y)
+data3 <- data.frame(X,Y)
+```
+
+1. Construire un arbre permettant d'expliquer $Y$ par $X$.
+
+
+2. Expliquer la manière dont l'arbre est construit dans ce cadre là.
+
+## Exercice 4 (élagage)
+
+On considère les données **Carseats** du package **ISLR**.
+
+```{r}
+library(ISLR)
+data(Carseats)
+```
+
+
+On cherche ici à expliquer la variable **Sales** par les autres variables.
+
+1. Construire un arbre permettant de répondre au problème.
+
+
+2. Expliquer les sorties de la fonction **printcp**.
+
+```{r}
+printcp(tree)
+```
+
+et calculer le dernier terme de la colonne **rel error**.
+
+On obtient des informations sur la suite de 17 arbres emboités obtenus par l'algorithme d'élagage :
+
+- *CP* représente le paramètre de complexité, plsu il est petit plus l'arbre est grand.
+- *nsplit* correspond au nombre de coupures de l'arbre.
+- *rel error* contient l'erreur quadratique calculée sur les données d'apprentissage. Cette erreur décroit lorsque la complexité augmente.
+- *xerror* contient l'erreur quadratique calculée par validation croisée.
+- *xstd* correspond à l'écart type estimé du risque quadratique.
+
+
+3. Construire une suite d'arbres plus grandes en jouant sur les paramètres **cp** et **minsplit**.
+
+
+4. Représenter l'arbre de la suite possédant 8 coupures (utiliser **prune**).
+
+
+5. La fonction **visTree** du package **visNetwork** permet de donner une visualisation interactive de l'arbre.
+
+```{r message=FALSE, warning=FALSE}
+library(visNetwork)
+visTree(tree)
+```
+
+Un application Shiny est également proposée :
+
+
+```{r,eval=FALSE,include=TRUE}
+visTreeEditor(Carseats)
+```
+
+6. Expliquer la sortie de
+
+```{r}
+plotcp(tree1)
+```
+
+
+7. Séparer les données en un échantillon d'apprentissage de taille 250 et un échantillon test de taille 150.
+
+```{r}
+n.train <- 250
+set.seed(1234)
+perm <- sample(nrow(Carseats))
+train <- Carseats[perm[1:n.train],]
+test <- Carseats[-perm[1:n.train],]
+```
+
+8. On considère la suite d'arbres définies par
+
+```{r}
+tree <- rpart(Sales~.,data=train,cp=0.000001,minsplit=2)
+```
+
+Dans cette suite, sélectionner
+
+  - un arbre très simple (avec 2 ou 3 coupures)
+  - un arbre très grand
+  - l'arbre optimal (avec la procédure d'élagage classique).
+  
+
+9. Calculer l'erreur quadratique de ces 3 arbres en utilisant l'échantillon test.
+
+
+L'arbre sélectionné a ici la plus petite erreur.
+
+
+## Exercice 5
+
+On considère ici les mêmes données que précédemment mais on cherche à expliquer une version binaire de la variable **Sales**.
+
+1. Construire une nouvelle variable **High** qui prend pour valeurs **No** si **Sales** est inférieur ou égal à 8, **Yes** sinon.
+
+
+2. Construire un arbre permettant d'expliquer **High** par les autres variables (sans **Sales** évidemment !) et expliquer les principales différences par rapport à l'exercice précédent.
+
+
+3. Expliquer la commande :
+
+```{r}
+tree1 <- rpart(High~.,data=data1,parms=list(split="information"))
+tree1$parms
+```
+
+
+4. Expliquer les sorties de la fonction **printcp**.
+
+```{r}
+printcp(tree)
+```
+
+
+et calculer le dernier terme de la colonne **rel error**.
+
+On obtient des informations sur la suite de 8 arbres emboités obtenus par l'algorithme d'élagage :
+
+- *CP* représente le paramètre de complexité, plsu il est petit plus l'arbre est grand.
+- *nsplit* correspond au nombre de coupures de l'arbre.
+- *rel error* contient l'erreur de classification calculée sur les données d'apprentissage. Cette erreur décroit lorsque la complexité augmente.
+- *xerror* contient l'erreur de classification calculée par validation croisée.
+- *xstd* correspond à l'écart type estimé du risque quadratique.
+
+
+5. Sélectionner un arbre optimal dans la suite.
+
+6. On considère la suite d'arbres
+
+```{r}
+tree2 <- rpart(High~.,data=data1,parms=list(loss=matrix(c(0,5,1,0),ncol=2)),cp=0.01,minsplit=2)
+```
+
+Expliquer la sortie. On pourra calculer le dernier terme de la colonne **rel error** de la table **cptable**.
+
+7. Comparer les valeurs ajustées par les deux arbres considérés.
+

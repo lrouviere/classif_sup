@@ -1,0 +1,96 @@
+---
+title: "Tuto 5 : forêts aléatoires et comparaison de méthodes"
+output:
+  html_notebook: 
+    css: ~/Dropbox/FICHIERS_STYLE/styles.css
+    toc: yes
+    toc_float: yes
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_classic(base_size=12))
+```
+
+
+## Exercice 1 
+
+On considère les données **spam** du package **Kernlab**.
+
+```{r message=FALSE, warning=FALSE}
+library(kernlab)
+data(spam)
+```
+
+1. Expliquer le graphe suivant.
+
+```{r message=FALSE, warning=FALSE}
+library(randomForest)
+rf1 <- randomForest(type~.,data=spam)
+plot(rf1)
+```
+
+
+2. Construire une nouvelle forêt aléatoire avec **mtry=1** et comparer les 2 forêts.
+
+3. Séparer les données en un échantillon d'apprentissage de taille 3000 et un échantillon test de taille 1601.
+
+```{r}
+set.seed(1234)
+perm <- sample(nrow(spam))
+train <- spam %>% slice(perm[1:3000])
+test <- spam %>% slice(-perm[1:3000])
+```
+
+
+4. Construire deux forêts aléatoires sur les données d'apprentissage : une avec les valeurs par défaut, l'autre avec **mtry=1**.
+
+5. Calculer les erreurs de classification des deux forêts en utilisant les données test.
+
+6. Utiliser la fonction **train** du package **caret** pour choisir le paramètre **mtry** dans la grille **seq(1,30,by=5)**.
+
+7. Construire un arbre sur les données d'apprentissage
+
+8. Comparer les courbes ROC et les AUC des 2 forêts et de l'arbre (on utilisera l'échantillon test pour calculer les valeurs de score).
+
+9. Calculer les erreurs de classification des 3 méthodes.
+
+10. Représenter les 10 variables les plus importantes de la meilleure forêt aléatoire à l'aide d'un diagramme en barres.
+
+
+11. Comparer les temps de calcul de la fonction **ranger** du package **ranger** et de la fonction **randoForest** du package **randomForest**.
+
+### Exercice 2 
+
+On considère les données *internet advertisements*  disponibles [ici](https://archive.ics.uci.edu/ml/datasets/internet+advertisements)).
+
+1. Importer les données et expliquer le problème.
+
+```{r message=FALSE, warning=FALSE}
+ad_data <- read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/internet_ads/ad.data",col_names = FALSE,na=c("?"))
+dim(ad_data)
+```
+
+
+Ces données représentent la présence/absence d'images publicitaires sur des pages web. Les variables explicatives représentent la géométrie de l'image ainsi que la présence de phrases, d'indentation et de mots. Le problème est de prédire si une image est une publicité ("ad") ou non ("nonad"). On dispose de 3279 observations and 1558 variables. Le problème peut insi être considéré comme un problème de grande dimension.
+
+2. Nommer $Y$ la variable à expliquer et supprimer les observations qui contiennent des données manquantes.
+
+
+3. Séparer les données en un échantillon d'apprentissage de taille 2000 et un échantillon test de taille 359.
+
+```{r}
+set.seed(1234)
+ind_train <- sample(nrow(ad_data1),2000)
+train <- ad_data1%>%slice(ind_train)
+test <- ad_data1%>%slice(-ind_train)
+```
+
+4. Calculer la variance des variables explicatives. Interpréter.
+
+
+5. Construire un arbre, une lda et une forêt aléatoire sur les données d'apprentissage.
+
+
+6. Comparer les 3 méthodes avec la courbe ROC puis AUC.
+

@@ -13,19 +13,20 @@ title: Cours
 ## Exercices, notebook
 
 - Exemple de fichier de style css pour notebook : [styles.css](styles.css)
-- Tutoriel 1 : Construction de graphes. Fichiers [Rmd](tuto1_std.Rmd), [html](tuto1_std.nb.html)
-- Tutoriel 2 : Modèles et construction de graphes. Fichiers [Rmd](tuto2_std.Rmd), [html](tuto2_std.nb.html)
-- Tutoriel 3 : Modularité. Fichiers [Rmd](tuto3_std.Rmd), [html](tuto3_std.nb.html)
-- Tutoriel 4 : Clustering spectral. Fichiers [Rmd](tuto4_std.Rmd), [html](tuto4_std.nb.html)
-
-## Correction
+- Tutoriel 1 : Estimation du risque. Fichiers [Rmd](stu_tuto1_risque.Rmd), [html](stu_tuto1_risque.nb.html)
+- Tutoriel 2 : Analyse discriminante. Fichiers [Rmd](stu_tuto2_lda.Rmd), [html](stu_tuto2_lda.nb.html)
+- Tutoriel 3 : Régression logistique. Fichiers [Rmd](stu_tuto3_logit.Rmd), [html](stu_tuto3_logit.nb.html)
+- Tutoriel 4 : Arbres. Fichiers [Rmd](stu_tuto4_arbres.Rmd), [html](stu_tuto4_arbres.nb.html)
+- Tutoriel 5 : Forêts aléatoires. Fichers [Rmd](stu_tuto5_foret.Rmd), [html](stu_tuto5_foret.nb.html)
 
 ## Données
 
-- [Media edges](Dataset1-Media-Example-EDGES.csv)
-- [Media nodes](Dataset1-Media-Example-NODES.csv)
-- [Amis](Friendship-network_data_2013.csv)
-- [Karaté](karate.gml)
-- [Les misérables](lesmis.gml)
+- [panne](panne.txt)
 
+## Corrections
 
+- [Tutoriel 1]()
+- [Tutoriel 2]()
+- [Tutoriel 3]()
+- [Tutoriel 4]()
+- [Tutoriel 5]()

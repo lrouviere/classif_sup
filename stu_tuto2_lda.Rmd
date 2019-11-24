@@ -1,0 +1,146 @@
+---
+title: "Tuto2 : Analyse discriminante"
+output:
+  html_notebook: 
+    css: ~/Dropbox/FICHIERS_STYLE/styles.css
+    toc: yes
+    toc_float: yes
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_classic(base_size=12))
+```
+
+
+## Exercice 1
+
+On considère les données sur les iris de Fisher.
+
+```{r}
+data(iris)
+```
+
+1. A l'aide de la fonction **PCA** du package **FactoMineR**, réaliser une ACP en utilisant comme variables actives les 4 variables quantitatives du jeu de données.
+
+
+2. Représenter le nuage des individus sur les 2 premiers axes de l'ACP en utilisant une couleur différente pour chaque espèce d'iris.
+
+
+3. A l'aide de la fonction **lda** du package **MASS**, effectuer une analyse discriminante linéaire permettant d'expliquer l'espèce par les 4 autres variables explicatives.
+
+
+4. Représenter le nuage des individus sur les deux premiers axes de l'analyse discriminante linéaire (en utilisant une couleur différente pour chaque espèce d'iris).
+
+
+5. Rappeler comment sont obtenues les coordonnées des individus sur chaque axe. En déduire une interprétation de la position des individus.
+
+
+6. Comparer les représentations des questions 2 et 4.
+
+
+7. Expliquer les sorties
+
+```{r}
+score <- predict(mod.lda)$x
+ldahist(score[,1],iris[,5])    
+ldahist(score[,2],iris[,5])    
+```
+
+
+8. Exécuter et analyser les sorties de la commande
+
+```{r}
+mod.lda2 <- lda(Species~.,data=iris,CV=TRUE)
+```
+
+
+9. Comparer, en terme d'erreur de prévision, les performances de LDA et QDA.
+
+
+# Exercice 2
+
+1. On considère les jeux de données **Vowel** (training et test) qui se trouvent à cet [url](https://statweb.stanford.edu/~hastie/ElemStatLearn/). On peut les importer avec
+
+```{r message=FALSE, warning=FALSE}
+dapp <- read_csv("https://web.stanford.edu/~hastie/ElemStatLearn/datasets/vowel.train")[,-1]
+dtest <- read_csv("https://web.stanford.edu/~hastie/ElemStatLearn/datasets/vowel.test")[,-1]
+```
+
+
+Expliquer le problème.
+
+2. Effectuer une analyse discriminante linéaire (uniquement avec les données d'apprentissage) et visualiser les individus sur les 2 premiers axes de l'analyse discriminante. On pourra utiliser **predict**.
+
+
+3. La fonction suivante permet de choisir les axes à visualiser, ainsi que les centres de gravité projetés des groupes.
+
+```{r, message=FALSE, warning=FALSE}
+cdg <- prev %>% group_by(y) %>% summarise_all(mean)
+repres_axes <- function(prev,cdg,axe1=1,axe2=2){
+  nom1 <- paste("LD",as.character(axe1),sep="")
+  nom2 <- paste("LD",as.character(axe2),sep="")
+  ggplot(prev)+aes_string(x=as.name(nom1),y=as.name(nom2))+geom_point(aes(color=y))+geom_point(data=cdg,aes(color=y),shape=17,size=4)+theme_classic()
+}
+repres_axes(prev,cdg,1,2)
+repres_axes(prev,cdg,5,6)
+```
+
+
+4. Représenter les individus sur le premier plan factoriel de l'ACP, on utilisera une couleur différente pour chaque groupe. On pourra utiliser le package **FactoMineR**.
+
+
+5. Comparer cette projection avec celle obtenue par l'analyse discriminante linéaire.
+
+6. Evaluer la performance de lda sur les données test. Comparer avec l'analyse discriminante quadratique.
+
+7. Expliquer comment on peut faire de la prévision en réduisant la dimension de l'espace des $X$.
+
+
+8. Proposer une méthode permettant de choisir le meilleur nombre d'axes.
+
+# Exercice 3
+
+On considère le jeu de données **phoneme** du package *ElemStatLearn*
+
+```{r, message=FALSE, warning=FALSE, include=TRUE}
+library(ElemStatLearn)
+library(reshape2)
+data(phoneme)
+donnees <- phoneme[,-258]
+```
+
+1. Expliquer le problème et représenter pour chaque groupe la courbe moyenne.
+
+Il s'agit d'expiquer un son parmi 5 à partir de courbes discrétisées en 256 points.
+
+```{r}
+moy_groupe <- donnees %>% group_by(g) %>% summarise_all(mean)
+names(moy_groupe)[2:257] <- as.character(1:256)
+moy_plot <- moy_groupe %>% gather(key=x,value=value,-g)
+ggplot(moy_plot)+aes(x=as.numeric(x),y=value,color=g)+geom_line(size=1)+xlab("x")
+```
+
+
+
+
+2. Séparer les données en un échantillon d'apprentissage de taille 3000 et un échantillon test de taille 1509.
+
+```{r}
+set.seed(1234)
+perm <- sample(nrow(donnees))
+dapp <- donnees[perm[1:3000],]
+dtest <- phoneme[perm[3001:4509],]
+```
+
+3. Effectuer une analyse discriminante linéaire et une analyse discriminante quadratique sur les données d'apprentissage uniquement. Evaluer les performances de ces deux approches sur les données test.
+
+
+4. Quels peuvent être les intérêts d'effectuer une analyse disciminante régularisée dans ce contexte ? Effectuer une telle analyse à l'aide de la fonction *rda* du package **klaR**.
+
+
+
+5. Sélectionner les paramètres de régularisation à l'aide du package **caret**. Comparer le nouveau modèle aux précédents.
+
+
+
