@@ -25,8 +25,8 @@ title: Cours
 
 ## Corrections
 
-- [Tutoriel 1]()
-- [Tutoriel 2]()
-- [Tutoriel 3]()
-- [Tutoriel 4]()
-- [Tutoriel 5]()
+- [Tutoriel 1](tuto1_risque.html)
+- [Tutoriel 2](tuto2_lda.html)
+- [Tutoriel 3](tuto3_logit.html)
+- [Tutoriel 4](tuto4_arbre.html)
+- [Tutoriel 5](tuto5_foret.html)
