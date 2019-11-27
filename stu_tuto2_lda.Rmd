@@ -58,7 +58,7 @@ mod.lda2 <- lda(Species~.,data=iris,CV=TRUE)
 9. Comparer, en terme d'erreur de prévision, les performances de LDA et QDA.
 
 
-# Exercice 2
+## Exercice 2
 
 1. On considère les jeux de données **Vowel** (training et test) qui se trouvent à cet [url](https://statweb.stanford.edu/~hastie/ElemStatLearn/). On peut les importer avec
 
@@ -99,7 +99,7 @@ repres_axes(prev,cdg,5,6)
 
 8. Proposer une méthode permettant de choisir le meilleur nombre d'axes.
 
-# Exercice 3
+## Exercice 3
 
 On considère le jeu de données **phoneme** du package *ElemStatLearn*
 
