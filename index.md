@@ -5,10 +5,13 @@ title: Cours
 
 ## Documents de cours
 
+- [slides](classif_sup.pdf)
+- [slides au format rapport](cours_article.pdf)
 
+<!--
 - [slides](cepe_classif.pdf)
 - [slides au format rapport](cepe_article.pdf)
-
+-->
 
 ## Exercices, notebook
 
