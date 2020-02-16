@@ -17,10 +17,10 @@ title: Cours
 
 - Exemple de fichier de style css pour notebook : [styles.css](styles.css)
 - Tutoriel 1 : Estimation du risque. Fichiers [Rmd](stu_tuto1_risque.Rmd), [html](stu_tuto1_risque.nb.html)
-- Tutoriel 2 : Analyse discriminante. Fichiers [Rmd](stu_tuto2_lda.Rmd), [html](stu_tuto2_lda.nb.html)
+- Tutoriel 2 : Analyse discriminante. Fichiers [Rmd](stu_tuto2_lda_R2.Rmd), [html](stu_tuto2_lda_R2.nb.html)
 - Tutoriel 3 : Régression logistique. Fichiers [Rmd](stu_tuto3_logit.Rmd), [html](stu_tuto3_logit.nb.html)
-- Tutoriel 4 : Arbres. Fichiers [Rmd](stu_tuto4_arbres.Rmd), [html](stu_tuto4_arbres.nb.html)
-- Tutoriel 5 : Forêts aléatoires. Fichers [Rmd](stu_tuto5_foret.Rmd), [html](stu_tuto5_foret.nb.html)
+- Tutoriel 4 : Arbres. Fichiers [Rmd](stu_tuto4_arbres_R2.Rmd), [html](stu_tuto4_arbres_R2.nb.html)
+- Tutoriel 5 : Forêts aléatoires. Fichers [Rmd](stu_tuto5_foret_R2.Rmd), [html](stu_tuto5_foret.nb_R2.html)
 
 ## Données
 

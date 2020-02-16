@@ -1,0 +1,86 @@
+---
+title: "Tuto 5 : forêts aléatoires et comparaison de méthodes"
+output:
+  html_notebook: 
+    toc: yes
+    toc_float: yes
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_classic(base_size=12))
+```
+
+
+## Exercice 1 
+
+On considère les données **spam** du package **Kernlab**.
+
+```{r message=FALSE, warning=FALSE}
+library(kernlab)
+data(spam)
+```
+
+1. Expliquer le graphe suivant.
+
+```{r message=FALSE, warning=FALSE}
+library(randomForest)
+rf1 <- randomForest(type~.,data=spam)
+plot(rf1)
+```
+
+
+2. Construire une nouvelle forêt aléatoire avec **mtry=1** et comparer les 2 forêts.
+
+3. Séparer les données en un échantillon d'apprentissage de taille 3000 et un échantillon test de taille 1601.
+
+4. Construire deux forêts aléatoires sur les données d'apprentissage : une avec les valeurs par défaut, l'autre avec **mtry=1**.
+
+5. Calculer les erreurs de classification des deux forêts en utilisant les données test.
+
+6. Utiliser la fonction **train** du package **caret** pour choisir le paramètre **mtry** dans la grille **seq(1,30,by=5)**.
+
+
+7. Construire un arbre sur les données d'apprentissage.
+
+
+8. Comparer les courbes ROC et les AUC des 2 forêts et de l'arbre (on utilisera l'échantillon test pour calculer les valeurs de score).
+
+
+9. Calculer les erreurs de classification des 3 méthodes.
+
+
+10. Représenter les 10 variables les plus importantes de la meilleure forêt aléatoire à l'aide d'un diagramme en barres.
+
+
+
+11. Comparer les temps de calcul de la fonction **ranger** du package **ranger** et de la fonction **randomForest** du package **randomForest**.
+
+
+
+
+
+## Exercice 2 
+
+On considère les données *internet advertisements*  disponibles [ici](https://archive.ics.uci.edu/ml/datasets/internet+advertisements)).
+
+1. Importer les données et expliquer le problème.
+
+
+2. Nommer $Y$ la variable à expliquer et supprimer les observations qui contiennent des données manquantes.
+
+
+3. Séparer les données en un échantillon d'apprentissage de taille 2000 et un échantillon test de taille 359.
+
+
+4. Calculer la variance des variables explicatives. Interpréter.
+
+
+5. Construire un arbre, une lda et une forêt aléatoire sur les données d'apprentissage.
+
+
+6. Comparer les 3 méthodes avec la courbe ROC puis l'AUC.
+
+
+7. Faire le même travail avec une validation croisée 10 blocs
+
