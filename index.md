@@ -34,4 +34,4 @@ title: Cours
 - [Tutoriel 3](tuto3_logit.html)
 - [Tutoriel 4](tuto4_arbres.html)
 - [Tutoriel 5](tuto5_foret.html)
-- [QUelques éléments de correction pour le TD](correction.pdf)
+- [Quelques éléments de correction pour le TD](correction.pdf)
