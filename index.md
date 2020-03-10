@@ -31,6 +31,7 @@ title: Cours
 
 - [Tutoriel 1](tuto1_risque.html)
 - [Tutoriel 2](tuto2_lda.html)
+- [Tutoriel 2_2](tuto2_lda.html)
 - [Tutoriel 3](tuto3_logit.html)
 - [Tutoriel 4](tuto4_arbres.html)
 - [Tutoriel 5](tuto5_foret.html)
