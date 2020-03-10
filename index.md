@@ -35,3 +35,7 @@ title: Cours
 - [Tutoriel 4](tuto4_arbres.html)
 - [Tutoriel 5](tuto5_foret.html)
 - [Quelques éléments de correction pour le TD](correction.pdf)
+
+## Sujet controle continu
+
+- [Février 2019](devoir_fevrier2019.pdf)
