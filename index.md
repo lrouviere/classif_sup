@@ -11,7 +11,7 @@ title: Cours
 <!--
 - [slides](cepe_classif.pdf)
 - [slides au format rapport](cepe_article.pdf)
--->
+
 
 ## Exercices, notebook
 
@@ -22,6 +22,7 @@ title: Cours
 - Tutoriel 4 : Arbres. Fichiers [Rmd](stu_tuto4_arbres_R2.Rmd), [html](stu_tuto4_arbres_R2.nb.html)
 - Tutoriel 5 : Forêts aléatoires. Fichers [Rmd](stu_tuto5_foret_R2.Rmd), [html](stu_tuto5_foret_R2.nb.html)
 - [Feuille de TD](td.pdf)
+-->
 
 ## Données
 
