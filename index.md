@@ -14,6 +14,7 @@ Ce cours présente une introduction à l'apprentissage supervisé. On y présent
 - [slides au format rapport](classif_sup_article2021.pdf) (pour imprimer)
 - [tutoriel](https://lrouviere.github.io/TUTO_ML/) : chapitres 1, 2, 3 et 5
 - [compléments sur les arbres](complements_arbres.pdf)
+- [compléments sur les forêts aléatoires](complements_forets.pdf)
 
 
 
