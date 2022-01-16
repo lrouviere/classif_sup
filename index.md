@@ -1,5 +1,5 @@
 ---
-title: Cours
+title: Apprentissage supervisé
 ---
 
 Ce cours présente une introduction à l'apprentissage supervisé. On y présentera notamment le cadre mathématique avec les notions de **risque et estimation de risque** ainsi que les algorithmes de référence : 
