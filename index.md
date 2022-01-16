@@ -9,8 +9,8 @@ Ce cours présente une introduction à l'apprentissage supervisé. On y présent
 
 ## Documents de cours
 
-- [slides](classif_sup.pdf)
-- [slides au format rapport](classif_sup_article2021.pdf) (pour imprimer)
+- [slides](cours_app_sup_R2.pdf)
+- [slides au format rapport](cours_app_sup_R2_article.pdf) (pour imprimer)
 - [tutoriel](https://lrouviere.github.io/TUTO_ML/) : chapitres 1, 3 et 5
 
 <!---
