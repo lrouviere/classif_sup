@@ -2,12 +2,12 @@
 title: Apprentissage supervisé
 ---
 
-Ce cours présente une introduction à l'apprentissage supervisé. On y présentera notamment le cadre mathématique avec les notions de **risque et estimation de risque** ainsi que les algorithmes de référence.
+Ce cours présente une introduction à l'apprentissage supervisé. On y présentera notamment le cadre mathématique avec les notions de **risque et estimation de risque** ainsi que des **algorithmes de référence**.
 
 ## Plan du cours
 
 - Cadre mathématique pour l'apprentissage supervisé
-  - Notion de risque et algorithmes de prévision
+  - Notions de risque et algorithmes de prévision
   - Estimation du risque : ré-échantillonnage, hold out, validation croisée
 - Arbres (régression et classification) : méthode CART
 - Forêts aléatoires : bagging, RF-RI, score d'importance
@@ -24,6 +24,7 @@ Ce cours présente une introduction à l'apprentissage supervisé. On y présent
 --->
 
 
+<!---
 
 ## Données
 
@@ -32,6 +33,5 @@ Ce cours présente une introduction à l'apprentissage supervisé. On y présent
 
 ## Sujet controle continu
 
-<!---
 - [Février 2019](devoir_fevrier2019.pdf)
 --->
